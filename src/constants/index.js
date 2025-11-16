@@ -3,45 +3,52 @@ import project2 from "../assets/projects/project-2.jpg";
 import project3 from "../assets/projects/project-3.jpg";
 import project4 from "../assets/projects/project-4.jpg";
 
-export const HERO_CONTENT = `Desenvolvedor com sólida experiência em criação e manutenção de aplicativos utilizando diversas linguagens de programação e frameworks. Especializado em C#, JavaScript/TypeScript, React e Node.js, com forte experiência em desenvolvimento de microsserviços e sistemas distribuídos. Comprometido em entregar soluções robustas e escaláveis que impulsionam o crescimento dos negócios.`;
+export const HERO_CONTENT = `Desenvolvedor Full Stack com sólida experiência em sistemas distribuídos e alta performance. Especialista em .NET/C# e React, com histórico comprovado em otimização de aplicações, correção de bugs críticos e implementação de arquiteturas escaláveis para sistemas de BigData e aplicações corporativas.`;
 
-export const ABOUT_TEXT = `Desenvolvedor Full Stack com expertise em criação e manutenção de aplicativos utilizando diversas tecnologias modernas. Possuo sólida experiência em desenvolvimento de microsserviços e sistemas distribuídos utilizando .NET Core e Node.js, com foco em performance e escalabilidade. Proficiente em message brokers como RabbitMQ e Kafka, e experiente em bancos de dados relacionais e NoSQL. Minha jornada profissional é marcada pela busca constante por excelência técnica e aprendizado contínuo. Atualmente finalizando o bacharelado em Sistemas de Informação, combino conhecimento acadêmico com experiência prática para entregar soluções inovadoras.`;
+export const ABOUT_TEXT = `Desenvolvedor Full Stack com expertise em .NET e React. Minha atuação inclui a escrita, depuração e teste de código para garantir funcionalidades robustas e alta qualidade do software. Experiência em desenvolvimento de microsserviços e sistemas distribuídos utilizando Akka.NET, com foco em performance e escalabilidade. Proficiência em implementação de message brokers como RabbitMQ e Kafka. Expertise em trabalho com bancos de dados relacionais, como MySQL e PostgreSQL, onde realizo consultas complexas, modelagem de dados e otimização de performance. Experiência adicional com bancos NoSQL como Cassandra. Competente no desenvolvimento front-end com React e AngularJS, implementando interfaces responsivas e intuitivas, seguindo as melhores práticas de desenvolvimento web e padrões de design modernos. Habilidades analíticas me permitem identificar oportunidades de melhoria e entregar soluções eficazes, sempre com foco na excelência e na satisfação do cliente. Experiência em metodologias ágeis e práticas de DevOps.`;
 
 export const EXPERIENCES = [
   {
-    year: "2024 - 2025",
-    role: "Desenvolvedor Full-Stack Pleno",
-    company: "Lar Cooperativa Agroindustrial",
-    description: `Desenvolvimento do aplicativo LarDigital, com foco em back-end. Responsável pela criação e manutenção de funcionalidades críticas, garantindo integração eficiente dos sistemas e performance robusta da aplicação.`,
-    technologies: ["C#", ".NET", "React", "SQL Server"],
-  },
-  {
-    year: "2022 - 2024",
-    role: "Desenvolvedor Full-Stack Júnior",
+    year: "Janeiro 2025 - Atual",
+    role: "Analista de Sistemas",
     company: "IntellTech",
-    description: `Desenvolvimento de aplicações usando C# e Akka.NET para criar sistemas distribuídos e escaláveis. Gerenciamento de concorrência e comunicação entre atores, com foco em performance e escalabilidade.`,
-    technologies: ["C#", "Akka.NET", "SQL Server", "Sistemas Distribuídos"],
+    description: `Implementação e correção de bugs críticos no sistema distribuído de coleta de BigData usando C#, React e Akka.NET. Manutenção e evolução do projeto principal da empresa, focando em estabilidade e performance. Automatização de processos de implantação, otimizando fluxos de integração e configuração. Desenvolvimento de soluções escaláveis para processamento de grandes volumes de dados.`,
+    technologies: ["C#", "React", "Akka.NET", "BigData", "DevOps"],
   },
   {
-    year: "2022",
-    role: "Desenvolvedor Full-Stack Júnior",
+    year: "Janeiro 2024 - Dezembro 2024",
+    role: "Desenvolvedor Pleno",
+    company: "Lar Cooperativa Agroindustrial",
+    description: `Desenvolvimento do back-end do aplicativo LarDigital para gestão cooperativa, focando em robustez e confiabilidade. Implementação de funcionalidades críticas como sistema de gerenciamento, gestão de estoque e relatórios. Otimização de consultas SQL e integração com APIs externas de bancos e fornecedores. Arquitetura de soluções para garantir alta disponibilidade e performance consistente.`,
+    technologies: ["C#", ".NET", "SQL Server", "React", "APIs"],
+  },
+  {
+    year: "Setembro 2022 - Janeiro 2024",
+    role: "Desenvolvedor Júnior",
+    company: "IntellTech",
+    description: `Desenvolvimento de aplicações usando C#, React e o framework Akka.NET. Integração de novos clientes ao sistema de BigData, garantindo onboarding suave e configurações personalizadas. Automatização de processos de implantação usando C# e Python, eliminando tarefas manuais repetitivas. Manutenção proativa do sistema distribuído de coleta, monitoramento e resolução de incidentes. Desenvolvimento de scripts de monitoramento para detecção precoce de problemas e alertas automáticos.`,
+    technologies: ["C#", "React", "Akka.NET", "Python", "BigData"],
+  },
+  {
+    year: "Janeiro 2022 - Agosto 2022",
+    role: "Desenvolvedor Júnior",
     company: "SOFT-TI Informática",
-    description: `Desenvolvimento de aplicações com C#, JavaScript e frameworks como Angular. Responsável pela escrita, depuração e teste de código, garantindo alta qualidade e performance do software.`,
-    technologies: ["C#", "JavaScript", "Angular", "SQL Server"],
+    description: `Desenvolvimento de aplicações com C#, JavaScript e frameworks como Angular. Escrita, depuração e teste de código em C# e JavaScript. Assegurar funcionalidade e qualidade do software. Participação ativa em projetos, cumprindo prazos e entregando soluções de alta qualidade.`,
+    technologies: ["C#", "JavaScript", "Angular"],
   },
   {
-    year: "2021 - 2022",
-    role: "Desenvolvedor RPA",
+    year: "Novembro 2021 - Janeiro 2022",
+    role: "Desenvolvedor Júnior",
     company: "Reuter Contabilidade",
-    description: `Desenvolvimento de soluções de automação na plataforma UiPath. Responsável pelo levantamento de requisitos, análise de processos e implementação de soluções automatizadas.`,
+    description: `Desenvolver soluções na plataforma UiPath. Levantamento de requisitos e análise de processos para identificar oportunidades e propor melhorias. Desenvolvimento e configuração de robôs de automação usando UiPath.`,
     technologies: ["UiPath", "RPA", "Automação"],
   },
   {
-    year: "2020 - 2021",
-    role: "Desenvolvedor Delphi Júnior",
+    year: "Setembro 2021 - Novembro 2021",
+    role: "Desenvolvedor Júnior",
     company: "Viasoft Korp ERP",
-    description: `Desenvolvimento de aplicações com Delphi. Responsável pela escrita, depuração e teste de código, garantindo alta qualidade e performance do software.`,
-    technologies: ["Delphi", "XML", "Pascal", "SQL Server"],
+    description: `Desenvolvimento e manutenção de aplicativos utilizando Delphi. Escrita, depuração e teste de código Delphi para implementar funcionalidades e corrigir problemas. Trabalho com bancos de dados relacionais (Oracle e SQL Server), incluindo consultas, criação e atualização de estruturas, e otimização de desempenho.`,
+    technologies: ["Delphi", "Oracle", "SQL Server"],
   },
 ];
 
@@ -77,9 +84,8 @@ export const PROJECTS = [
 ];
 
 export const CONTACT = {
-  address: "Foz do Iguaçu, PR, Brasil",
-  phoneNo: "+55 (45) 98406-3065",
+  address: "Foz do Iguaçu - 85862395, PR, Brasil",
   email: "victor.somavilla@aol.com",
   github: "https://github.com/Victor-cmda",
-  linkedin: "https://linkedin.com/in/victorhugosomavilla",
+  linkedin: "https://www.linkedin.com/in/victorhugosomavilla",
 };
