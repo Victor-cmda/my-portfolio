@@ -1,208 +1,313 @@
-import React from "react";
-import { PROJECTS } from "../constants";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  Github,
-  ExternalLink,
-  Folder,
-  Code2,
+  ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
+  Plus,
+  X,
+  Database,
+  Server,
+  Cpu,
+  Check,
+  Workflow,
+  ShoppingBag,
+  LayoutDashboard,
 } from "lucide-react";
+import { PROJECTS, CONTACT } from "../constants";
+import { useMotionPreferences } from "../hooks/useMotionPreferences";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-  },
-};
-
-export const Projects = () => {
+function projectArt(type) {
+  if (type === "network")
+    return (
+      <div className="network-art">
+        <div className="network-orbit" />
+        <div className="network-orbit second" />
+        <span className="network-center">
+          <Cpu size={44} strokeWidth={1} />
+        </span>
+        <span className="network-node node-one">
+          <Database />
+        </span>
+        <span className="network-node node-two">
+          <Server />
+        </span>
+        <span className="network-node node-three">
+          <Database />
+        </span>
+        <span className="network-node node-four">
+          <Server />
+        </span>
+        <span className="network-label">CONNECTED BY DESIGN</span>
+      </div>
+    );
+  if (type === "workflow")
+    return (
+      <div className="workflow-art">
+        <div>
+          <span>
+            <Workflow /> Capture
+          </span>
+          <i />
+          <span>
+            <Cpu /> Process
+          </span>
+          <i />
+          <span>
+            <Check /> Complete
+          </span>
+        </div>
+        <p>Let the workflow do the work.</p>
+      </div>
+    );
   return (
-    <section id="projetos" className="relative py-20">
-      <div className="absolute inset-0 -z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0 bg-gradient-to-b from-apple-blue-500/5 via-transparent to-transparent"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-apple-blue-500/5 blur-3xl"
-        />
+    <div className={`dashboard-art ${type === "pos" ? "pos-art" : ""}`}>
+      <div className="dashboard-sidebar">
+        <span className="dashboard-logo">
+          {type === "pos" ? <ShoppingBag size={19} /> : "L"}
+        </span>
+        <LayoutDashboard size={14} />
+        <Database size={14} />
+        <Workflow size={14} />
       </div>
+      <div className="dashboard-main">
+        <div className="dashboard-heading">
+          <span>
+            {type === "pos" ? "Sales overview" : "Operations overview"}
+          </span>
+          <span className="dashboard-avatar">VS</span>
+        </div>
+        <div className="dashboard-stats">
+          <div>
+            <small>{type === "pos" ? "Sales" : "Operations"}</small>
+            <b>Overview</b>
+            <em>↗ All in one place</em>
+          </div>
+          <div>
+            <small>Inventory</small>
+            <b>Connected</b>
+            <em>● Synchronized</em>
+          </div>
+        </div>
+        <div className="dashboard-chart">
+          <span>
+            {type === "pos" ? "Sales activity" : "Operational activity"}
+          </span>
+          <div className="chart-bars">
+            {[30, 44, 35, 57, 43, 66, 60, 80, 72, 92, 84, 100].map(
+              (height, index) => (
+                <i key={index} style={{ height: `${height}%` }} />
+              ),
+            )}
+          </div>
+        </div>
+        <div className="dashboard-table">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+    </div>
+  );
+}
 
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            Projetos
-            <span className="bg-gradient-to-r from-apple-blue-400 to-apple-blue-500 bg-clip-text text-transparent">
-              {" "}
-              Destacados
-            </span>
+export function Projects() {
+  const reduced = useMotionPreferences();
+  const gallery = useRef(null);
+  const dialog = useRef(null);
+  const [selected, setSelected] = useState(null);
+  const [position, setPosition] = useState({ start: true, end: false });
+  useEffect(() => {
+    const element = gallery.current;
+    const update = () =>
+      setPosition({
+        start: element.scrollLeft < 8,
+        end:
+          element.scrollLeft + element.clientWidth >= element.scrollWidth - 8,
+      });
+    element.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    update();
+    return () => {
+      element.removeEventListener("scroll", update);
+      observer.disconnect();
+    };
+  }, []);
+  useEffect(() => {
+    if (selected === null) return;
+    const element = dialog.current;
+    element.showModal();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selected]);
+  const move = (direction) => {
+    const element = gallery.current;
+    element.scrollBy({
+      left:
+        direction *
+        (element.firstElementChild.getBoundingClientRect().width + 24),
+      behavior: reduced ? "instant" : "smooth",
+    });
+  };
+  return (
+    <section id="work" className="work section-pad">
+      <div className="section-heading shell">
+        <div>
+          <p className="eyebrow">SELECTED WORK</p>
+          <h2>
+            Systems that deliver.
+            <br />
+            <span>From data to impact.</span>
           </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 48 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mx-auto mt-4 h-1 rounded-full bg-gradient-to-r from-apple-blue-500 to-apple-blue-400"
-          />
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-2"
+        </div>
+        <a
+          className="text-link"
+          href={CONTACT.github}
+          target="_blank"
+          rel="noreferrer"
         >
-          {PROJECTS.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="group relative"
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative h-full overflow-hidden rounded-xl border border-apple-gray-700 bg-apple-gray-800/30 p-6 backdrop-blur-sm transition-colors hover:border-apple-blue-500/50">
-                <div className="mb-4 flex items-start justify-between">
-                  <motion.div
-                    className="rounded-xl bg-apple-blue-500/10 p-3"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Folder className="h-6 w-6 text-apple-blue-400" />
-                  </motion.div>
-                  <div className="flex gap-3">
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full p-2 text-apple-gray-300 transition-colors hover:bg-apple-gray-700 hover:text-white"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Github className="h-5 w-5" />
-                      </motion.a>
-                    )}
-                    {project.demo && (
-                      <motion.a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full p-2 text-apple-gray-300 transition-colors hover:bg-apple-gray-700 hover:text-white"
-                        whileHover={{ scale: 1.1, rotate: -5 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <ExternalLink className="h-5 w-5" />
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <h3 className="mb-2 text-xl font-medium text-white transition-colors group-hover:text-apple-blue-400">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-apple-gray-300">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="mt-auto">
-                  <div className="mb-2 flex items-center gap-2 text-xs text-apple-gray-400">
-                    <Code2 className="h-4 w-4" />
-                    Tecnologias
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <motion.span
-                        key={techIndex}
-                        className="rounded-full border border-apple-blue-500/20 bg-apple-blue-500/10 px-3 py-1 text-xs font-medium text-apple-blue-400"
-                        whileHover={{ scale: 1.1, borderColor: "rgba(0, 122, 255, 0.5)" }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                <motion.div
-                  className="absolute inset-0 -z-10 bg-gradient-to-br from-apple-blue-500/10 via-transparent to-transparent opacity-0"
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <motion.div
-                  className="absolute right-4 top-4 text-apple-blue-400 opacity-0"
-                  whileHover={{ opacity: 1, x: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ArrowUpRight className="h-5 w-5" />
-                </motion.div>
-                
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute -inset-1 rounded-xl bg-gradient-to-r from-apple-blue-500 to-apple-blue-400 opacity-0 blur-lg"
-                  whileHover={{ opacity: 0.2 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ zIndex: -1 }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-12 text-center"
-        >
-          <motion.a
-            href="https://github.com/Victor-cmda"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-apple-gray-700 bg-apple-gray-800/50 px-6 py-3 text-sm text-apple-gray-300 transition-colors hover:border-apple-blue-500/50 hover:text-apple-blue-400"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Github className="h-4 w-4" />
-            Ver mais projetos no GitHub
-          </motion.a>
-        </motion.div>
+          Explore GitHub <ArrowUpRight size={16} />
+        </a>
       </div>
+      <div
+        className="project-gallery"
+        ref={gallery}
+        aria-label="Selected projects"
+        tabIndex={0}
+      >
+        {PROJECTS.map((project, index) => (
+          <motion.article
+            key={project.title}
+            className={`project-card ${project.className}`}
+            initial={reduced ? false : { opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: reduced ? 0 : 0.65 }}
+          >
+            <div className="project-copy">
+              <div className="project-brand-row">
+                {project.brand ? (
+                  <span className="brand-tile project-brand">
+                    <img
+                      src={project.brand.logo}
+                      alt={project.brand.name}
+                      width="90"
+                      height="36"
+                      loading="lazy"
+                    />
+                  </span>
+                ) : (
+                  <span className="project-symbol" aria-hidden="true">
+                    <ShoppingBag size={22} />
+                  </span>
+                )}
+                <p className="eyebrow">{project.category}</p>
+              </div>
+              <h3>{project.headline}</h3>
+            </div>
+            <div className="project-art" aria-hidden="true">
+              {projectArt(project.art)}
+            </div>
+            <div className="project-card-footer">
+              <div>
+                <h4>{project.title}</h4>
+                <span className="project-owner">{project.brandContext}</span>
+                <p>{project.technologies.slice(0, 3).join(" · ")}</p>
+              </div>
+              <button
+                className="round-button project-open"
+                aria-label={`Learn more about ${project.title}`}
+                onClick={() => setSelected(index)}
+              >
+                <Plus size={20} />
+              </button>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+      <div className="gallery-controls shell">
+        <span>Different challenges. The same attention to detail.</span>
+        <div>
+          <button
+            className="round-button"
+            disabled={position.start}
+            onClick={() => move(-1)}
+            aria-label="Previous projects"
+          >
+            <ArrowLeft size={19} />
+          </button>
+          <button
+            className="round-button"
+            disabled={position.end}
+            onClick={() => move(1)}
+            aria-label="Next projects"
+          >
+            <ArrowRight size={19} />
+          </button>
+        </div>
+      </div>
+      <dialog
+        ref={dialog}
+        className="project-dialog"
+        onClose={() => setSelected(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) dialog.current.close();
+        }}
+        aria-labelledby="project-dialog-title"
+      >
+        {selected !== null && (
+          <div className="dialog-content">
+            <button
+              autoFocus
+              className="round-button dialog-close"
+              aria-label="Close project details"
+              onClick={() => dialog.current.close()}
+            >
+              <X size={20} />
+            </button>
+            {PROJECTS[selected].brand && (
+              <a
+                className="dialog-brand"
+                href={PROJECTS[selected].brand.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="brand-tile">
+                  <img
+                    src={PROJECTS[selected].brand.logo}
+                    alt={PROJECTS[selected].brand.name}
+                    width="100"
+                    height="40"
+                  />
+                </span>
+                <span>
+                  {PROJECTS[selected].brandContext} <ArrowUpRight size={12} />
+                </span>
+              </a>
+            )}
+            <p className="eyebrow">{PROJECTS[selected].category}</p>
+            <h2 id="project-dialog-title">{PROJECTS[selected].title}</h2>
+            <p className="dialog-intro">{PROJECTS[selected].description}</p>
+            <p>{PROJECTS[selected].detail}</p>
+            <div className="tech-tags">
+              {PROJECTS[selected].technologies.map((tech) => (
+                <span key={tech}>{tech}</span>
+              ))}
+            </div>
+            <p className="visual-note">
+              Card illustrations are interface concepts, not product
+              screenshots.
+            </p>
+            <a href={`mailto:${CONTACT.email}`} className="text-link">
+              Let’s talk about this work <ArrowUpRight size={16} />
+            </a>
+          </div>
+        )}
+      </dialog>
     </section>
   );
-};
+}

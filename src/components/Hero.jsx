@@ -1,176 +1,167 @@
-import React from "react";
-import { HERO_CONTENT } from "../constants/index";
-import profilePic from "../assets/PictureProfileVictor.png";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Braces,
+  Command,
+  Layers,
+  Terminal,
+} from "lucide-react";
+import { useMotionPreferences } from "../hooks/useMotionPreferences";
 
-const fadeInUp = (delay) => ({
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      delay,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-  },
-});
-
-const floatingAnimation = {
-  initial: { y: 0 },
-  animate: {
-    y: [-10, 10, -10],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
-  },
-};
-
-export const Hero = () => {
+export function Hero() {
+  const ref = useRef(null);
+  const reduced = useMotionPreferences();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.7], [12, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [0.94, 1.04]);
   return (
-    <section className="relative min-h-[calc(100vh-5rem)] py-12 md:py-16 overflow-hidden">
-      {/* Animated background elements - Apple style */}
-      <div className="absolute inset-0 -z-10">
+    <section id="overview" className="hero" ref={ref}>
+      <div className="hero-copy shell">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          className="absolute top-20 left-10 h-96 w-96 rounded-full bg-apple-blue-500/10 blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-apple-gray-300/5 blur-3xl"
-        />
-      </div>
-
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col-reverse items-center gap-8 md:flex-row md:justify-between md:gap-12">
-          <motion.div
-            className="flex flex-col items-center text-center md:items-start md:text-left"
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={fadeInUp(0.2)} className="space-y-4">
-              <motion.h1
-                className="bg-gradient-to-r from-white via-apple-gray-50 to-apple-gray-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                Victor Hugo Somavilla
-              </motion.h1>
-            </motion.div>
-
-            <motion.div variants={fadeInUp(0.4)} className="mt-4 md:mt-6">
-              <motion.span
-                className="bg-gradient-to-r from-apple-blue-400 to-apple-blue-600 bg-clip-text text-xl font-medium tracking-tight text-transparent sm:text-2xl md:text-3xl"
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                style={{ backgroundSize: "200% 200%" }}
-              >
-                Analista de Sistemas
-              </motion.span>
-            </motion.div>
-
-            <motion.p
-              variants={fadeInUp(0.6)}
-              className="mt-6 max-w-xl text-base font-normal leading-relaxed text-apple-gray-200 md:mt-8 md:text-lg"
-            >
-              {HERO_CONTENT}
-            </motion.p>
-
-            <motion.div
-              variants={fadeInUp(0.8)}
-              className="mt-8 flex gap-4 md:mt-10"
-            >
-              <motion.a
-                href="#contact"
-                className="group relative inline-flex items-center overflow-hidden rounded-full bg-apple-blue-500 px-8 py-3.5 text-white font-medium shadow-lg transition-all hover:bg-apple-blue-600"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(0, 122, 255, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="relative z-10">Entre em contato</span>
-              </motion.a>
-              <motion.a
-                href="#projetos"
-                className="group relative inline-flex items-center overflow-hidden rounded-full border border-apple-gray-600 bg-apple-gray-800/30 backdrop-blur-sm px-8 py-3.5 text-apple-gray-50 font-medium transition-all hover:border-apple-gray-400 hover:bg-apple-gray-700/30"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="relative z-10">Ver projetos</span>
-              </motion.a>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
-            animate={{ scale: 1, opacity: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.215, 0.61, 0.355, 1] }}
-            className="relative w-64 shrink-0 md:w-80 lg:w-96"
-          >
-            <motion.div
-              {...floatingAnimation}
-              className="relative overflow-hidden rounded-full"
-            >
-              <motion.div
-                className="absolute inset-0 z-10 bg-gradient-to-tr from-apple-blue-500/20 via-transparent to-apple-gray-300/10"
-                animate={{
-                  rotate: [0, 360],
-                }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.img
-                src={profilePic}
-                alt="Victor Hugo Somavilla"
-                className="relative z-0 w-full transform rounded-full bg-gradient-to-b from-apple-gray-800 to-black object-cover shadow-2xl shadow-apple-blue-500/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  WebkitMaskImage: "-webkit-radial-gradient(white, black)",
-                }}
-              />
-              {/* Glow effect - Apple style */}
-              <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-tr from-apple-blue-500/20 to-apple-gray-300/10 opacity-20 blur-2xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.3, 0.2],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-apple-gray-700 to-transparent" />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform"
-      >
-        <motion.svg
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="h-6 w-6 text-apple-gray-400"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+          initial={reduced ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduced ? 0 : 0.9 }}
         >
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </motion.svg>
-      </motion.div>
+          <p className="eyebrow hero-eyebrow">
+            <span /> VICTOR SOMAVILLA · BACKEND .NET DEVELOPER
+          </p>
+          <h1>
+            Built for scale.
+            <br />
+            <span className="silver-text">Engineered to last.</span>
+          </h1>
+          <p className="hero-description">
+            C# / .NET. Distributed systems.
+            <br />
+            Performance and reliability, down to the details.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-blue" href="#work">
+              Explore my work <ArrowDown size={16} />
+            </a>
+            <a className="text-link" href="#about">
+              Meet the developer <ArrowUpRight size={16} />
+            </a>
+          </div>
+        </motion.div>
+      </div>
+      <div className="product-stage" aria-hidden="true">
+        <div className="stage-halo" />
+        <div className="stage-line" />
+        <motion.div
+          className="product-window"
+          style={reduced ? {} : { y, rotateX, scale }}
+        >
+          <div className="window-bar">
+            <div className="window-dots">
+              <i />
+              <i />
+              <i />
+            </div>
+            <span>
+              <Command size={12} /> The systems behind the experience.
+            </span>
+            <span className="window-version">VS / 01</span>
+          </div>
+          <div className="window-body">
+            <div className="window-preview">
+              <span className="preview-label">
+                BACKEND ENGINEERING / C# · .NET
+              </span>
+              <div className="orbital-art">
+                <div className="orbit orbit-one" />
+                <div className="orbit orbit-two" />
+                <div className="orbit orbit-three" />
+                <div className="core-mark">
+                  <Braces strokeWidth={1} />
+                  <span>vs.</span>
+                </div>
+              </div>
+              <div className="preview-bottom">
+                <span>
+                  From the first request.
+                  <br />
+                  <strong>To reliable production.</strong>
+                </span>
+                <ArrowUpRight size={25} />
+              </div>
+            </div>
+            <div className="window-code">
+              <div className="code-tab">
+                <Terminal size={13} /> DataPipeline.cs <span>●</span>
+              </div>
+              <div className="code-lines">
+                <p>
+                  <i>01</i>
+                  <span className="code-purple">public async</span> Task
+                  ProcessAsync(
+                </p>
+                <p>
+                  <i>02</i> CancellationToken ct)
+                </p>
+                <p>
+                  <i>03</i>
+                  {"{"}
+                </p>
+                <p>
+                  <i>04</i> <span className="code-purple">var</span> data ={" "}
+                  <span className="code-purple">await</span> source
+                </p>
+                <p>
+                  <i>05</i> .<span className="code-blue">ReadAsync</span>(ct);
+                </p>
+                <p>
+                  <i>06</i>{" "}
+                </p>
+                <p>
+                  <i>07</i> <span className="code-purple">var</span> result ={" "}
+                  <span className="code-blue">Transform</span>(data);
+                </p>
+                <p>
+                  <i>08</i> <span className="code-purple">await</span> store.
+                  <span className="code-blue">SaveAsync</span>(
+                </p>
+                <p>
+                  <i>09</i> result, ct);
+                </p>
+                <p>
+                  <i>10</i>
+                  {"}"}
+                </p>
+                <p>
+                  <i>11</i>
+                  <span className="code-green">
+                    {"// Every operation matters."}
+                  </span>
+                </p>
+              </div>
+              <div className="code-status">
+                <span>
+                  <i /> Built with purpose
+                </span>
+                <Layers size={14} />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+      <div className="hero-footnote shell">
+        <span>ENGINEERED AT THE CORE</span>
+        <div>
+          <span>C# / .NET</span>
+          <span>ASP.NET Core</span>
+          <span>Distributed systems</span>
+        </div>
+        <a href="#work">
+          SCROLL TO DISCOVER <ArrowDown size={12} />
+        </a>
+      </div>
     </section>
   );
-};
+}

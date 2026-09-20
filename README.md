@@ -1,92 +1,47 @@
-# Victor Hugo Somavilla - Portfólio
+# Victor Somavilla — Backend .NET Portfolio
 
-## 🚀 Sobre o Projeto
+A backend-focused personal portfolio built with React, Vite, and Framer Motion. Inspired by the visual storytelling of product launch pages: expressive typography, a scroll-linked product scene, editorial project cards, and restrained motion.
 
-Portfólio pessoal desenvolvido com React e Vite, apresentando minha jornada profissional, projetos e habilidades técnicas. O site foi construído com foco em performance, acessibilidade e design responsivo.
+## Local development
 
-### ✨ Features
+Use Node.js 22 or later and npm.
 
-- Design responsivo e moderno
-- Animações suaves e transições elegantes
-- Navegação intuitiva com scroll suave
-- Modo dark theme por padrão
-- Otimizado para SEO
-- Layout adaptativo para diferentes dispositivos
-
-## 🛠️ Tecnologias
-
-- **React 18** - Biblioteca JavaScript para construção de interfaces
-- **Vite** - Build tool e dev server
-- **TailwindCSS** - Framework CSS utility-first
-- **Lucide React** - Ícones modernos e customizáveis
-- **ESLint** - Linter para JavaScript/React
-- **PostCSS** - Processador CSS
-
-## 🚦 Getting Started
-
-### Pré-requisitos
-
-- Node.js 18.x ou superior
-- npm ou yarn
-
-### Instalação
-
-```bash
-# Clone o repositório
-git clone https://github.com/Victor-cmda/my-portfolio.git
-
-# Entre no diretório
-cd my-portfolio
-
-# Instale as dependências
-npm install
-# ou
-yarn install
-
-# Inicie o servidor de desenvolvimento
+```sh
+npm ci
 npm run dev
-# ou
-yarn dev
 ```
 
-O site estará disponível em `http://localhost:5173`
+Open the local URL printed by Vite (the project uses the `/my-portfolio/` base path for GitHub Pages).
 
-## 📦 Build
+## Validation and production
 
-Para gerar a versão de produção:
-
-```bash
+```sh
+npm run lint
 npm run build
-# ou
-yarn build
+npm run preview
 ```
 
-### Conteúdo
+`npm run deploy` builds and publishes `dist` to the `gh-pages` branch. Deployment is a separate, explicit step.
 
-Atualize suas informações pessoais nos componentes dentro da pasta `src/components/`:
+## Editing content
 
-- `Hero.jsx` - Seção inicial
-- `About.jsx` - Sobre mim
-- `Projects.jsx` - Projetos
-- `Experience.jsx` - Experiência profissional
-- `Contact.jsx` - Informações de contato
+- `src/constants/index.js`: projects, work history, verified brand assets, and contact details.
+- `src/components/Impact.jsx`: the dashboard performance case study.
+- `src/assets/brands/SOURCES.md`: official logo sources and content provenance.
+- `src/components/`: overview, project gallery, expertise, about, experience, and contact sections.
+- `src/index.css`: responsive layout, visual design, and motion fallbacks.
 
-## 📱 Layout Responsivo
+All visible content and metadata are in English. Project illustrations are original CSS interface concepts, not screenshots of client products. Professional experience, role progression, and education are updated from the owner’s supplied LinkedIn profile. The dashboard case study highlights its documented 46-minute to 26-second loading-time improvement. Frontend experience is presented as complementary to backend engineering.
 
-O site é totalmente responsivo e se adapta a diferentes tamanhos de tela:
+## Interactions and accessibility
 
-- Mobile: 320px - 768px
-- Tablet: 768px - 1024px
-- Desktop: 1024px+
+- Scroll-linked perspective and scale in the hero, plus section reveals.
+- Native horizontal scrolling, keyboard-focusable project gallery, and previous/next controls.
+- Native project dialogs with Escape dismissal and focus restoration.
+- Expandable experience entries, mobile navigation, and a skip link.
+- System reduced-motion support and a manual animation pause control in the footer.
+- Responsive layouts for mobile, tablet, and desktop.
 
-## 📬 Contato
+## Contact
 
-- LinkedIn: [Victor Hugo Somavilla](https://linkedin.com/in/victorhugosomavilla)
-- Email: victor.somavilla@aol.com
-- GitHub: [@Victor-cmda](https://github.com/Victor-cmda)
-
----
-
-<p align="center">
-  Desenvolvido com 💜 por Victor Hugo Somavilla
-</p>
+[GitHub](https://github.com/Victor-cmda) · [LinkedIn](https://www.linkedin.com/in/victorhugosomavilla) · victor.somavilla@aol.com

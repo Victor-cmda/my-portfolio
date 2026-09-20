@@ -1,91 +1,224 @@
-import project1 from "../assets/projects/project-1.jpg";
-import project2 from "../assets/projects/project-2.jpg";
-import project3 from "../assets/projects/project-3.jpg";
-import project4 from "../assets/projects/project-4.jpg";
+import intelltech from "../assets/brands/intelltech.svg";
+import lar from "../assets/brands/lar.png";
+import larDigital from "../assets/brands/lar-digital.png";
+import softTi from "../assets/brands/soft-ti.png";
+import reuter from "../assets/brands/reuter.png";
+import korp from "../assets/brands/korp.png";
+import itaipu from "../assets/brands/itaipu.png";
+import transpnet from "../assets/brands/transpnet.png";
 
-export const HERO_CONTENT = `Desenvolvedor Full Stack com sólida experiência em sistemas distribuídos e alta performance. Especialista em .NET/C# e React, com histórico comprovado em otimização de aplicações, correção de bugs críticos e implementação de arquiteturas escaláveis para sistemas de BigData e aplicações corporativas.`;
+export const CONTACT = {
+  address: "Foz do Iguaçu, Brazil",
+  email: "victor.somavilla@aol.com",
+  github: "https://github.com/Victor-cmda",
+  linkedin: "https://www.linkedin.com/in/victorhugosomavilla",
+};
 
-export const ABOUT_TEXT = `Desenvolvedor Full Stack com expertise em .NET e React. Minha atuação inclui a escrita, depuração e teste de código para garantir funcionalidades robustas e alta qualidade do software. Experiência em desenvolvimento de microsserviços e sistemas distribuídos utilizando Akka.NET, com foco em performance e escalabilidade. Proficiência em implementação de message brokers como RabbitMQ e Kafka. Expertise em trabalho com bancos de dados relacionais, como MySQL e PostgreSQL, onde realizo consultas complexas, modelagem de dados e otimização de performance. Experiência adicional com bancos NoSQL como Cassandra. Competente no desenvolvimento front-end com React e AngularJS, implementando interfaces responsivas e intuitivas, seguindo as melhores práticas de desenvolvimento web e padrões de design modernos. Habilidades analíticas me permitem identificar oportunidades de melhoria e entregar soluções eficazes, sempre com foco na excelência e na satisfação do cliente. Experiência em metodologias ágeis e práticas de DevOps.`;
+export const BRANDS = {
+  intelltech: {
+    name: "IntellTech",
+    logo: intelltech,
+    url: "https://intelltech.com/en/home-english/",
+  },
+  lar: {
+    name: "Lar Cooperativa Agroindustrial",
+    logo: lar,
+    dark: true,
+    fit: "cover",
+    url: "https://www.lar.ind.br/",
+  },
+  larDigital: {
+    name: "Lar Digital",
+    logo: larDigital,
+    url: "https://play.google.com/store/apps/details?id=br.ind.lar.lardigital",
+  },
+  softTi: {
+    name: "Soft-TI Informática",
+    logo: softTi,
+    dark: true,
+    url: "https://www.softtiinformatica.com.br/",
+  },
+  reuter: {
+    name: "Reuter Contabilidade",
+    logo: reuter,
+    url: "https://reutercontabilidade.com.br/",
+  },
+  korp: {
+    name: "Viasoft Korp ERP",
+    logo: korp,
+    url: "https://www.korp.com.br/",
+  },
+  itaipu: {
+    name: "Itaipu Binacional",
+    logo: itaipu,
+    url: "https://www.itaipu.gov.br/",
+  },
+  transpnet: {
+    name: "TranspNet Sistemas",
+    logo: transpnet,
+    url: "https://www.transp.net/",
+  },
+};
 
 export const EXPERIENCES = [
   {
-    year: "Janeiro 2025 - Atual",
-    role: "Analista de Sistemas",
+    year: "Jan 2025 — Present",
+    role: "Systems Analyst",
     company: "IntellTech",
-    description: `Implementação e correção de bugs críticos no sistema distribuído de coleta de BigData usando C#, React e Akka.NET. Manutenção e evolução do projeto principal da empresa, focando em estabilidade e performance. Automatização de processos de implantação, otimizando fluxos de integração e configuração. Desenvolvimento de soluções escaláveis para processamento de grandes volumes de dados.`,
-    technologies: ["C#", "React", "Akka.NET", "BigData", "DevOps"],
+    brand: BRANDS.intelltech,
+    current: true,
+    description:
+      "Backend development for monitoring, data collection, and processing applications. I build C#/.NET business logic, APIs, alarm processing, and data exports, and investigate production incidents with support and QA teams.",
+    highlights: [
+      "Optimize SQL Server and Apache Cassandra queries, asynchronous workflows, parallel processing, and caching.",
+      "Maintain integrations through REST APIs, messaging, MQTT, and OPC, with a focus on reliability and maintainability.",
+      "Refactored dashboard processing with affine transformations, reducing loading time from 46 minutes to 26 seconds.",
+    ],
+    positions: [
+      { role: "Systems Analyst", period: "Jul 2026 — Present" },
+      { role: "Junior Systems Analyst", period: "Jul 2025 — Jul 2026" },
+      { role: "Mid-level Software Developer", period: "Jan 2025 — Jul 2025" },
+    ],
+    technologies: [
+      "C# / .NET",
+      "Akka.NET",
+      "SQL Server",
+      "Cassandra",
+      "REST APIs",
+      "MQTT",
+      "OPC",
+    ],
   },
   {
-    year: "Janeiro 2024 - Dezembro 2024",
-    role: "Desenvolvedor Pleno",
+    year: "Jan 2024 — Dec 2024",
+    role: "Mid-level Software Developer",
     company: "Lar Cooperativa Agroindustrial",
-    description: `Desenvolvimento do back-end do aplicativo LarDigital para gestão cooperativa, focando em robustez e confiabilidade. Implementação de funcionalidades críticas como sistema de gerenciamento, gestão de estoque e relatórios. Otimização de consultas SQL e integração com APIs externas de bancos e fornecedores. Arquitetura de soluções para garantir alta disponibilidade e performance consistente.`,
-    technologies: ["C#", ".NET", "SQL Server", "React", "APIs"],
+    brand: BRANDS.lar,
+    description:
+      "Developed the LarDigital back end for operational management, inventory, and reporting. Integrated banking and supplier APIs, optimized SQL queries, and contributed to architecture decisions for production stability and high availability.",
+    technologies: ["C#", ".NET", "SQL Server", "REST APIs"],
   },
   {
-    year: "Setembro 2022 - Janeiro 2024",
-    role: "Desenvolvedor Júnior",
+    year: "Sep 2022 — Jan 2024",
+    role: "Junior Software Developer",
     company: "IntellTech",
-    description: `Desenvolvimento de aplicações usando C#, React e o framework Akka.NET. Integração de novos clientes ao sistema de BigData, garantindo onboarding suave e configurações personalizadas. Automatização de processos de implantação usando C# e Python, eliminando tarefas manuais repetitivas. Manutenção proativa do sistema distribuído de coleta, monitoramento e resolução de incidentes. Desenvolvimento de scripts de monitoramento para detecção precoce de problemas e alertas automáticos.`,
-    technologies: ["C#", "React", "Akka.NET", "Python", "BigData"],
+    brand: BRANDS.intelltech,
+    description:
+      "Developed distributed applications with C# and Akka.NET. Onboarded clients to the Big Data platform, automated operational workflows with C# and Python, and maintained data-collection services. Built monitoring scripts and automated alerts to improve observability.",
+    technologies: ["C#", "Akka.NET", "Python", "Big Data", "React"],
   },
   {
-    year: "Janeiro 2022 - Agosto 2022",
-    role: "Desenvolvedor Júnior",
-    company: "SOFT-TI Informática",
-    description: `Desenvolvimento de aplicações com C#, JavaScript e frameworks como Angular. Escrita, depuração e teste de código em C# e JavaScript. Assegurar funcionalidade e qualidade do software. Participação ativa em projetos, cumprindo prazos e entregando soluções de alta qualidade.`,
-    technologies: ["C#", "JavaScript", "Angular"],
+    year: "Jan 2022 — Aug 2022",
+    role: "Junior Software Developer",
+    company: "Soft-TI Informática",
+    brand: BRANDS.softTi,
+    description:
+      "Developed and maintained web applications with C#, .NET Framework, AngularJS, and SQL Server. Worked on bug fixes, testing, and application performance, progressing from an internship into a junior developer role.",
+    positions: [
+      { role: "Junior Software Developer", period: "Mar 2022 — Aug 2022" },
+      { role: "Software Development Intern", period: "Jan 2022 — Mar 2022" },
+    ],
+    technologies: ["C#", ".NET Framework", "SQL Server", "AngularJS"],
   },
   {
-    year: "Novembro 2021 - Janeiro 2022",
-    role: "Desenvolvedor Júnior",
+    year: "Nov 2021 — Jan 2022",
+    role: "Junior Software Developer",
     company: "Reuter Contabilidade",
-    description: `Desenvolver soluções na plataforma UiPath. Levantamento de requisitos e análise de processos para identificar oportunidades e propor melhorias. Desenvolvimento e configuração de robôs de automação usando UiPath.`,
-    technologies: ["UiPath", "RPA", "Automação"],
+    brand: BRANDS.reuter,
+    description:
+      "Developed UiPath automations for repetitive business processes. Gathered requirements and analyzed operational workflows to identify opportunities for automation.",
+    technologies: ["UiPath", "RPA", "Process automation"],
   },
   {
-    year: "Setembro 2021 - Novembro 2021",
-    role: "Desenvolvedor Júnior",
+    year: "Sep 2021 — Nov 2021",
+    role: "Junior Software Developer",
     company: "Viasoft Korp ERP",
-    description: `Desenvolvimento e manutenção de aplicativos utilizando Delphi. Escrita, depuração e teste de código Delphi para implementar funcionalidades e corrigir problemas. Trabalho com bancos de dados relacionais (Oracle e SQL Server), incluindo consultas, criação e atualização de estruturas, e otimização de desempenho.`,
-    technologies: ["Delphi", "Oracle", "SQL Server"],
+    brand: BRANDS.korp,
+    description:
+      "Developed and maintained ERP functionality with Delphi and SQL Server. Fixed defects, optimized relational database queries, and contributed to application stability using Git-based version control.",
+    technologies: ["Delphi", "SQL Server", "Git", "ERP"],
+  },
+  {
+    year: "Mar 2021 — Aug 2021",
+    role: "IT Intern",
+    company: "Itaipu Binacional",
+    brand: BRANDS.itaipu,
+    description:
+      "Supported desktop IT operations and internal technical processes, including operational requests, resource acquisition, and administrative activities in a large corporate environment.",
+    technologies: ["IT operations", "Technical support"],
+  },
+  {
+    year: "Nov 2020 — Mar 2021",
+    role: "Technical Support Intern",
+    company: "TranspNet Sistemas",
+    brand: BRANDS.transpnet,
+    description:
+      "Provided technical support to users, diagnosed software and hardware issues, and helped customers maintain the continuity of their business systems.",
+    technologies: ["Technical support", "Troubleshooting"],
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "PDV Solution",
-    image: project1,
+    title: "Distributed Data Platform",
+    category: "Distributed systems",
+    brand: BRANDS.intelltech,
+    brandContext: "Engineering at IntellTech",
+    headline: "Built for data.\nEngineered for scale.",
     description:
-      "Sistema de Ponto de Venda (PDV) desenvolvido com WinUI 3, incluindo gestão de vendas, controle de estoque e relatórios gerenciais.",
-    technologies: ["C#", "WinUI 3", "SQL Server", "Entity Framework"],
+      "Backend engineering for distributed monitoring, data-collection, and processing applications at IntellTech.",
+    detail:
+      "My work spans C#/.NET services, Akka.NET applications, SQL Server and Cassandra optimization, and integrations using REST APIs, messaging, MQTT, and OPC. Production troubleshooting, asynchronous processing, caching, and refactoring are central to improving reliability and performance.",
+    technologies: [
+      "C# / .NET",
+      "Akka.NET",
+      "Cassandra",
+      "SQL Server",
+      "MQTT",
+      "OPC",
+    ],
+    art: "network",
+    className: "project-data",
   },
   {
     title: "LarDigital",
-    image: project2,
+    category: "Backend & integrations",
+    brand: BRANDS.larDigital,
+    brandContext: "Lar Cooperativa Agroindustrial",
+    headline: "Connected services.\nReliable operations.",
     description:
-      "Aplicativo corporativo para gestão de processos agroindustriais, com foco em performance e escalabilidade.",
-    technologies: ["C#", ".NET", "React", "SQL Server"],
+      "Back-end development for LarDigital, supporting cooperative operations, inventory management, and reporting.",
+    detail:
+      "I implemented business-critical features and integrations with banking and supplier APIs, optimized SQL queries in heavily used services, and contributed to architecture decisions focused on robustness, scalability, and production availability.",
+    technologies: ["C#", ".NET", "SQL Server", "REST APIs"],
+    art: "dashboard",
+    className: "project-lar",
   },
   {
-    title: "Sistema de Distribuição",
-    image: project3,
+    title: "PDV Solution",
+    category: "Desktop & data persistence",
+    brandContext: "Point-of-sale application",
+    headline: "Every transaction.\nEvery detail.",
     description:
-      "Sistema distribuído desenvolvido com Akka.NET para processamento de dados em larga escala com alta disponibilidade.",
-    technologies: ["C#", "Akka.NET", "SQL Server", "RabbitMQ"],
+      "A point-of-sale application built with WinUI 3, bringing sales, inventory, and management reporting together.",
+    detail:
+      "The project combines a native Windows interface with SQL Server and Entity Framework for data persistence, supporting sales, stock control, and management reporting.",
+    technologies: ["C#", "WinUI 3", "SQL Server", "Entity Framework"],
+    art: "pos",
+    className: "project-pos",
   },
   {
-    title: "Automação de Processos",
-    image: project4,
+    title: "Process Automation",
+    category: "Business process automation",
+    brand: BRANDS.reuter,
+    brandContext: "Engineering at Reuter Contabilidade",
+    headline: "Less repetition.\nMore possibility.",
     description:
-      "Soluções de automação desenvolvidas com UiPath para otimização de processos contábeis e administrativos.",
-    technologies: ["UiPath", "RPA", "Automação", "SQL Server"],
+      "UiPath automation solutions for accounting and administrative processes at Reuter Contabilidade.",
+    detail:
+      "I gathered requirements, analyzed repetitive business processes, and developed automated routines to reduce manual operational tasks.",
+    technologies: ["UiPath", "RPA", "Process automation"],
+    art: "workflow",
+    className: "project-auto",
   },
 ];
-
-export const CONTACT = {
-  address: "Foz do Iguaçu - 85862395, PR, Brasil",
-  email: "victor.somavilla@aol.com",
-  github: "https://github.com/Victor-cmda",
-  linkedin: "https://www.linkedin.com/in/victorhugosomavilla",
-};
